@@ -1,0 +1,7 @@
+# user specific files
+DS_Store
+.vscode
+
+# python
+## we need *.pyc
+.pytest_cache
