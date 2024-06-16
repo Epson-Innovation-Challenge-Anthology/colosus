@@ -9,7 +9,7 @@ STOPWORDS_PATH = "stopwords.txt"
 FONT_PATH = "PretendardVariable.ttf"
 
 # mask layer ready
-alice_mask = np.array(Image.open(MASK_PATH))
+mask = np.array(Image.open(MASK_PATH))
 
 # read the text
 with open(TXT_PATH, "r", encoding="utf-8") as f:
@@ -29,7 +29,7 @@ wc = WordCloud(
     font_path=FONT_PATH,
     stopwords=stopwords,
     background_color="white",
-    mask=alice_mask,
+    mask=mask,
 ).generate(text)
 
 # NOTE: DEBUG
