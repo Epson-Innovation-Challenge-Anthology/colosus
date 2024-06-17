@@ -6,20 +6,20 @@
 
 <!-- markdownlint-configure-file { "MD033": false, "MD045": false } -->
 
-
 ## wordcloud module
 
-![wordcloud-result](mod/wordcloud-result.png)
+![wordcloud-result](wordcloud-result.png)
+
+---
 
 ```bash
 > tree mod
 mod
 ├── PretendardVariable.ttf
 ├── README.md
-├── flower-image.jpeg
+├── cloud.py
+├── lorem-ipsum.txt
 ├── main.py
-├── pink-muhly-paper.txt
-├── preprocess.py
-├── stopwords.txt
-└── wordcloud-result.png
+├── result.png
+└── stopwords.txt
 ```

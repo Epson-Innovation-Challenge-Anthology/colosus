@@ -3,5 +3,11 @@ DS_Store
 .vscode
 
 # python
-## we need *.pyc
+__pycache__
 .pytest_cache
+*.pyc
+
+# generated files
+result.png
+wordcloud*.png
+!wordcloud-result.png

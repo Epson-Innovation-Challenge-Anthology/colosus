@@ -1,45 +1,28 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from PIL import Image
-from wordcloud import STOPWORDS, WordCloud
+import logging
 
-MASK_PATH = "flower-image.jpeg"
-TXT_PATH = "pink-muhly-paper.txt"
+from cloud import CloudManager
+
+logging.basicConfig(level=logging.INFO)
+
+TXT_PATH = "lorem-ipsum.txt"
 STOPWORDS_PATH = "stopwords.txt"
 FONT_PATH = "PretendardVariable.ttf"
+BACKGROUND_COLOR = "white"
+MAX_WORDS = 100
 
-# mask layer ready
-mask = np.array(Image.open(MASK_PATH))
 
-# read the text
-with open(TXT_PATH, "r", encoding="utf-8") as f:
-    text = f.read()
+def main():
+    with open(TXT_PATH, "r", encoding="utf-8") as f:
+        text = f.read()
+    with open(STOPWORDS_PATH, "r", encoding="utf-8") as f:
+        stopwords = f.read().split("\n")
+    with CloudManager(auto_save=True, output="result") as cm:
+        cm.set_text(text)
+        cm.set_stopwords(stopwords)
+        cm.set_bgcolor(BACKGROUND_COLOR)
+        cm.set_max_words(MAX_WORDS)
+        cm.set_font(FONT_PATH)
 
-# read stopwords
-with open(STOPWORDS_PATH, "r", encoding="utf-8") as f:
-    stopwords = f.read().split("\n")
 
-# stopwords
-stopwords = set(STOPWORDS)
-stopwords.union(set(stopwords))
-
-# making wordcloud
-wc = WordCloud(
-    max_words=100,
-    font_path=FONT_PATH,
-    stopwords=stopwords,
-    background_color="white",
-    mask=mask,
-).generate(text)
-
-# NOTE: DEBUG
-# print(wc.words_)
-
-# visualize
-plt.figure(figsize=(20, 5))
-plt.imshow(wc, interpolation="bilinear")
-plt.axis("off")
-plt.show()
-
-# save
-wc.to_file("wordcloud-result.png")
+if __name__ == "__main__":
+    main()
